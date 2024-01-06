@@ -9,7 +9,7 @@ class entw_Cambridge_tc {
     async displayName() {
         let locale = await api.locale();
         if (locale.indexOf('CN') != -1) return '剑桥英汉双解(繁体)';
-        if (locale.indexOf('TW') != -1) return '劍橋英漢雙解(繁体) v8';
+        if (locale.indexOf('TW') != -1) return '劍橋英漢雙解(繁体) v9';
         return 'Cambridge EN->CN Dictionary (TC)';
     }
 
@@ -229,7 +229,6 @@ class entw_Cambridge_tc {
                 div.phrasehead{margin: 2px 0;font-weight: bold;}
                 span.star {color: #FFBB00;}
                 span.pos  {text-transform:lowercase; font-size:0.9em; margin-right:5px; padding:2px 4px; color:white; background-color:#0d47a1; border-radius:3px;}
-                span.cssScale {font-size:0.9em; margin-right:5px; padding:2px 6px; color:white; background-color:#1d2a57; border-radius:50px;}
                 span.tran {margin:0; padding:0;}
                 span.eng_tran {margin-right:3px; padding:0;}
                 span.chn_tran {color:#0d47a1;}
