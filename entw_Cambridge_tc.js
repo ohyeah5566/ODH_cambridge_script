@@ -8,7 +8,7 @@ class entw_Cambridge_tc {
 
     async displayName() {
         let locale = await api.locale();
-        if (locale.indexOf('TW') != -1) return '劍橋英漢雙解(繁體),含頻率 v2';
+        if (locale.indexOf('TW') != -1) return '劍橋英漢雙解(繁體),含頻率 v3';
         if (locale.indexOf('CN') != -1) return '剑桥英汉双解(繁体)';
         return 'Cambridge EN->CN Dictionary (TC)';
     }
