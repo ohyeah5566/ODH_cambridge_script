@@ -9,7 +9,7 @@ class entw_Cambridge_tc {
     async displayName() {
         let locale = await api.locale();
         if (locale.indexOf('CN') != -1) return '剑桥英汉双解(繁体)';
-        if (locale.indexOf('TW') != -1) return '劍橋英漢雙解(繁体) v7';
+        if (locale.indexOf('TW') != -1) return '劍橋英漢雙解(繁体) v8';
         return 'Cambridge EN->CN Dictionary (TC)';
     }
 
@@ -72,8 +72,8 @@ class entw_Cambridge_tc {
             let sensbodys = entry.querySelectorAll('.sense-body') || [];
             for (const sensbody of sensbodys) {
                 let sensblocks = sensbody.childNodes || [];
-                let scale = sensbody.querySelector('.epp-xref').innerText();
-                let cssScale = `<span class='scale'>${scale}</span>`;
+                let scale = T(sensbody.querySelector('.epp-xref'));
+                let cssScale = scale ? `<span class='scale'>${scale}</span>` : '';
                 for (const sensblock of sensblocks) {
                     let phrasehead = '';
                     let defblocks = [];
