@@ -71,8 +71,8 @@ class entw_Cambridge_tc {
 
             let sensbodys = entry.querySelectorAll('.sense-body') || [];
             for (const sensbody of sensbodys) {
-		let scale = sensbody.querySelectorAll('.epp-xref.dxref').textContent.trim();				
-		let cssScale = scale ? `<span class='scale'>${scale}</span>` : '';
+		//let scale = sensbody.querySelectorAll('.epp-xref.dxref').textContent.trim();				
+		let cssScale = `<span class='scale'>'A1'</span>`;
                 let sensblocks = sensbody.childNodes || [];
                 for (const sensblock of sensblocks) {
                     let phrasehead = '';
