@@ -1,5 +1,5 @@
 /* global api */
-class encn_Cambridge_tc {
+class entw_Cambridge_tc {
     constructor(options) {
         this.options = options;
         this.maxexample = 2;
@@ -8,7 +8,8 @@ class encn_Cambridge_tc {
 
     async displayName() {
         let locale = await api.locale();
-        if (locale.indexOf('TW') != -1) return '劍橋英漢雙解(繁体)';
+        if (locale.indexOf('TW') != -1) return '劍橋英漢雙解(繁體),含頻率';
+        if (locale.indexOf('CN') != -1) return '剑桥英汉双解(繁体)';
         return 'Cambridge EN->CN Dictionary (TC)';
     }
 
@@ -61,18 +62,17 @@ class encn_Cambridge_tc {
             }
             let pos = T(entry.querySelector('.posgram'));
             pos = pos ? `<span class='pos'>${pos}</span>` : '';
-            audios[0] = entry.querySelector(".uk.dpron-i source");
+            audios[0] = entry.querySelector(".us.dpron-i source");
             audios[0] = audios[0] ? 'https://dictionary.cambridge.org' + audios[0].getAttribute('src') : '';
             //audios[0] = audios[0].replace('https', 'http');
-            audios[1] = entry.querySelector(".us.dpron-i source");
+            audios[1] = entry.querySelector(".uk.dpron-i source");
             audios[1] = audios[1] ? 'https://dictionary.cambridge.org' + audios[1].getAttribute('src') : '';
             //audios[1] = audios[1].replace('https', 'http');
 
             let sensbodys = entry.querySelectorAll('.sense-body') || [];
             for (const sensbody of sensbodys) {
-				let scale = sensbody.querySelectorAll('.epp-xref.dxref').textContent.trim();
-				
-				console.log(extractedTexts);
+		let scale = sensbody.querySelectorAll('.epp-xref.dxref').textContent.trim();				
+		let cssScale = scale ? `<span class='scale'>${scale}</span>` : '';
                 let sensblocks = sensbody.childNodes || [];
                 for (const sensblock of sensblocks) {
                     let phrasehead = '';
@@ -96,7 +96,7 @@ class encn_Cambridge_tc {
                         eng_tran = `<span class='eng_tran'>${eng_tran.replace(RegExp(expression, 'gi'),`<b>${expression}</b>`)}</span>`;
                         chn_tran = `<span class='chn_tran'>${chn_tran}</span>`;
                         let tran = `<span class='tran'>${eng_tran}${chn_tran}</span>`;
-                        definition += phrasehead ? `${phrasehead}${tran}` : `${pos}${tran}`;
+                        definition += phrasehead ? `${phrasehead}${tran}` : `${pos}${cssScale}${tran}`;
 
                         // make exmaple segement
                         let examps = defblock.querySelectorAll('.def-body .examp') || [];
@@ -120,7 +120,8 @@ class encn_Cambridge_tc {
                 expression,
                 reading,
                 definitions,
-                audios
+                audios,
+				scale
             });
         }
         return notes;
