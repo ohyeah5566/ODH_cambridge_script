@@ -8,8 +8,8 @@ class entw_Cambridge_tc {
 
     async displayName() {
         let locale = await api.locale();
-        if (locale.indexOf('TW') != -1) return '劍橋英漢雙解(繁體),含頻率 v3';
         if (locale.indexOf('CN') != -1) return '剑桥英汉双解(繁体)';
+        if (locale.indexOf('TW') != -1) return '劍橋英漢雙解(繁體),含頻率 v4';
         return 'Cambridge EN->CN Dictionary (TC)';
     }
 
@@ -62,17 +62,16 @@ class entw_Cambridge_tc {
             }
             let pos = T(entry.querySelector('.posgram'));
             pos = pos ? `<span class='pos'>${pos}</span>` : '';
-            audios[0] = entry.querySelector(".us.dpron-i source");
+            audios[0] = entry.querySelector(".uk.dpron-i source");
             audios[0] = audios[0] ? 'https://dictionary.cambridge.org' + audios[0].getAttribute('src') : '';
             //audios[0] = audios[0].replace('https', 'http');
-            audios[1] = entry.querySelector(".uk.dpron-i source");
+            audios[1] = entry.querySelector(".us.dpron-i source");
             audios[1] = audios[1] ? 'https://dictionary.cambridge.org' + audios[1].getAttribute('src') : '';
             //audios[1] = audios[1].replace('https', 'http');
 
             let sensbodys = entry.querySelectorAll('.sense-body') || [];
-            for (const sensbody of sensbodys) {
-		//let scale = sensbody.querySelectorAll('.epp-xref.dxref').textContent.trim();				
-		let cssScale = `<span class='scale'>A1</span>`;
+            for (const sensbody of sensbodys) {			
+		        let cssScale = `<span class='scale'>A1</span>`;
                 let sensblocks = sensbody.childNodes || [];
                 for (const sensblock of sensblocks) {
                     let phrasehead = '';
