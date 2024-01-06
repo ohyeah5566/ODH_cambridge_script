@@ -120,8 +120,7 @@ class entw_Cambridge_tc {
                 expression,
                 reading,
                 definitions,
-                audios,
-				scale
+                audios
             });
         }
         return notes;
