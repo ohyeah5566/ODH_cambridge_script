@@ -9,7 +9,7 @@ class entw_Cambridge_tc {
     async displayName() {
         let locale = await api.locale();
         if (locale.indexOf('CN') != -1) return '剑桥英汉双解(繁体)';
-        if (locale.indexOf('TW') != -1) return '劍橋英漢雙解(繁體),含頻率 v4';
+        if (locale.indexOf('TW') != -1) return '劍橋英漢雙解(繁体) v5';
         return 'Cambridge EN->CN Dictionary (TC)';
     }
 
@@ -70,8 +70,7 @@ class entw_Cambridge_tc {
             //audios[1] = audios[1].replace('https', 'http');
 
             let sensbodys = entry.querySelectorAll('.sense-body') || [];
-            for (const sensbody of sensbodys) {			
-		        let cssScale = `<span class='scale'>A1</span>`;
+            for (const sensbody of sensbodys) {
                 let sensblocks = sensbody.childNodes || [];
                 for (const sensblock of sensblocks) {
                     let phrasehead = '';
@@ -95,7 +94,7 @@ class entw_Cambridge_tc {
                         eng_tran = `<span class='eng_tran'>${eng_tran.replace(RegExp(expression, 'gi'),`<b>${expression}</b>`)}</span>`;
                         chn_tran = `<span class='chn_tran'>${chn_tran}</span>`;
                         let tran = `<span class='tran'>${eng_tran}${chn_tran}</span>`;
-                        definition += phrasehead ? `${phrasehead}${tran}` : `${pos}${cssScale}${tran}`;
+                        definition += phrasehead ? `${phrasehead}${tran}` : `${pos}${tran}`;
 
                         // make exmaple segement
                         let examps = defblock.querySelectorAll('.def-body .examp') || [];
